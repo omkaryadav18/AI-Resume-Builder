@@ -1,0 +1,23 @@
+# 🔧 Core Web Framework
+Django>=5.1,<5.2
+
+# 📄 PDF Generation
+xhtml2pdf>=0.2.11
+
+# 🤖 Google AI API for Gemini
+google-generativeai>=0.8.5
+requests>=2.31.0  # used for Gemini fallback/custom calls
+
+# 🌐 Environment Variables
+python-dotenv>=1.0.1
+
+# ✅ Form Management (Django handles most natively)
+# (modelformset_factory, CSRF, etc. already in Django)
+
+# 🗄️ Optional: If using MySQL instead of SQLite
+mysqlclient>=2.2.0
+pymysql>=1.1.0
+
+
+# 🛠 Optional Dev Tools
+# django-debug-toolbar>=4.3.0

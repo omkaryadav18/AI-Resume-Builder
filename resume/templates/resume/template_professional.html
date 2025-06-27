@@ -1,0 +1,172 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; color: #333; }
+    .section-title { color: #00539C; border-bottom: 2px solid #00539C; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1 style="color:#00539C">{{ resume.full_name }}</h1>
+  <p>Email: {{ resume.email }} | Phone: {{ resume.phone }}</p>
+
+  <h2 class="section-title">Professional Summary</h2>
+  <p>{{ resume.summary }}</p>
+
+  <h2 class="section-title">Skills</h2>
+  <p>{{ resume.skills }}</p>
+
+  <h2 class="section-title">Education</h2>
+  <p>{{ resume.education }}</p>
+
+  <h2 class="section-title">Work Experience</h2>
+  <p>{{ resume.experience }}</p>
+
+  <h2 class="section-title">Certifications</h2>
+  <p>{{ resume.certificates }}</p>
+
+  <h2 class="section-title">Achievements</h2>
+  <p>{{ resume.achievements }}</p>
+
+
+</body>
+</html>
+
+{% with resume.id as resume_id %}
+<a href="{% url 'download_resume_pdf' resume.id %}" class="btn btn-primary">Download as PDF</a>
+<a href="{% url 'match_resume_to_job' resume.id %}">Optimize with AI</a>
+
+{% endwith %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Professional Resume</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 40px auto;
+      max-width: 800px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #7B1113;
+      font-size: 32px;
+      margin-bottom: 0;
+    }
+
+    .contact-info {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .summary {
+      font-style: italic;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .section-title {
+      color: #7B1113;
+      border-bottom: 2px solid #7B1113;
+      font-weight: bold;
+      margin-top: 40px;
+      font-size: 18px;
+    }
+
+    .job {
+      margin-top: 20px;
+    }
+
+    .job-title {
+      font-weight: bold;
+    }
+
+    .job-meta {
+      display: flex;
+      justify-content: space-between;
+      font-style: italic;
+      font-size: 14px;
+      margin-top: -4px;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    .education, .skills {
+      margin-top: 20px;
+    }
+
+    .skills p, .certs p, .achievements p {
+      margin: 10px 0;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-container a {
+      text-decoration: none;
+      background-color: #7B1113;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    .btn-container a:hover {
+      background-color: #5e0d10;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>{{ resume.full_name }}</h1>
+  <div class="contact-info">
+    {{ resume.address }} | {{ resume.phone }} | {{ resume.email }}
+  </div>
+
+  <div class="summary">
+    {{ resume.summary }}
+  </div>
+
+  <div class="section-title">PROFESSIONAL EXPERIENCE</div>
+  {{ resume.experience|safe }}
+
+  <div class="section-title">EDUCATION</div>
+  <div class="education">
+    {{ resume.education|safe }}
+  </div>
+
+  <div class="section-title">ADDITIONAL SKILLS</div>
+  <div class="skills">
+    <p>{{ resume.skills }}</p>
+  </div>
+
+  <div class="section-title">CERTIFICATIONS</div>
+  <div class="certs">
+    <p>{{ resume.certificates }}</p>
+  </div>
+
+  <div class="section-title">ACHIEVEMENTS</div>
+  <div class="achievements">
+    <p>{{ resume.achievements }}</p>
+  </div>
+
+  <div class="btn-container">
+    {% with resume.id as resume_id %}
+      <a href="{% url 'download_resume_pdf' resume_id %}">Download as PDF</a>
+      <a href="{% url 'match_resume_to_job' resume_id %}">Optimize with AI</a>
+    {% endwith %}
+  </div>
+
+</body>
+</html>

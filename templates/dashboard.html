@@ -1,0 +1,173 @@
+<!-- <html>
+<body>
+    
+    <h2>Welcome {{ user.username }}</h2>
+    <p>This is your dashboard.</p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'create_resume' %}">Create New Resume</a>
+    {% endif %}
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dark transparent overlay for readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 18, 18, 0.8);
+            z-index: 0;
+        }
+
+          header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    z-index: 10;
+  }
+
+      /* Site name */
+  .site-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #00c6ff;
+    text-shadow: 0 0 5px rgba(0, 198, 255, 0.7);
+    user-select: none;
+    cursor: default;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+
+    nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+    nav a:hover {
+    background-color: #00c6ff;
+    color: #121212;
+  }
+
+        /* Container for content */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #e0e0e0;
+            padding: 2rem 3rem;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(6px);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #cccccc;
+        }
+
+        a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s, color 0.3s;
+            font-weight: 500;
+        }
+
+        a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #00c6ff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="site-name">Prosume</div>
+    <nav>
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      <a href="{% url 'login' %}">Logout</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h2>Hello {{ user.username }}!</h2>
+    <p><h3>Welcome</h3>to AI-powered Resume builder <h3>Prosume</h3><br>
+        Here you can Generate and Review your Resume using AI giving you suggestions!
+
+    </p>
+    {% if user.is_authenticated %}
+      <a href="{% url 'create_resume' %}" class="button">Create New Resume</a>
+      <a href="{% url 'generate_resume' %}" class="btn btn-primary">Generate Resume with AI</a>
+
+    {% endif %}
+  </div>
+</body>
+</html>
+
+
+  <!-- <header>
+    <div class="site-name">Prosume</div>
+    <nav>
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      <a href="{% url 'login' %}">Logout</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h2>Hello {{ user.username }}!</h2>
+    <p><h3>Welcome</h3>to AI-powered Resume builder <h3>Prosume</h3><br>
+        Here you can Generate and Review your Resume using AI giving you suggestions!
+
+    </p>
+    {% if user.is_authenticated %}
+      <a href="{% url 'create_resume' %}" class="button">Create New Resume</a>
+    {% endif %}
+  </div> -->

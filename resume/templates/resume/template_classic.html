@@ -1,0 +1,195 @@
+<!-- <h2>{{ resume.full_name }}</h2>
+<p><strong>Email:</strong> {{ resume.email }}</p>
+<p><strong>Phone:</strong> {{ resume.phone }}</p>
+<h3>Summary</h3>
+<p>{{ resume.summary }}</p>
+
+<h3>Skills</h3>
+<p>{{ resume.skills }}</p>
+
+<h3>Education</h3>
+<p>{{ resume.education }}</p>
+
+<h3>Experience</h3>
+<p>{{ resume.experience }}</p>
+
+<h3>Certifications</h3>
+<p>{{ resume.certifications }}</p>
+
+<h3>Achievements</h3>
+<p>{{ resume.achievements }}</p>
+
+
+{% with resume.id as resume_id %}
+<a href="{% url 'download_resume_pdf' resume.id %}" class="btn btn-primary">Download as PDF</a>
+<a href="{% url 'match_resume_to_job' resume.id %}">Optimize with AI</a>
+
+{% endwith %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Preview</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background-color: #fdfdfd;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .resume-container {
+      max-width: 850px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      padding: 40px 50px;
+      border: 1px solid #ddd;
+    }
+
+    /* Header */
+    .header {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #222;
+    }
+
+    .header h2 span {
+      color: #a39144;
+      font-weight: bold;
+    }
+
+    .header p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Section Titles */
+    h3 {
+      font-size: 18px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #444;
+      color: #444;
+    }
+
+    /* Job / Education Entry Title */
+    .entry-title {
+      font-weight: bold;
+      margin: 10px 0 4px;
+    }
+
+    /* Paragraphs */
+    p {
+      margin: 5px 0 15px;
+      font-size: 15px;
+    }
+
+    /* Contact Details Strong Tags */
+    p strong {
+      font-weight: bold;
+      color: #000;
+    }
+
+    /* Skills / Languages Table */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .actions {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .actions a {
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #007acc;
+      color: #007acc;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .actions a:hover {
+      background-color: #007acc;
+      color: #fff;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+      .resume-container {
+        border: none;
+        padding: 0;
+      }
+      .actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resume-container">
+    <div class="header">
+      <h2><span>{{ resume.full_name.split|first }}</span> {{ resume.full_name.split|last }}</h2>
+      <p> {{ resume.phone }} – {{ resume.email }}</p>
+    </div>
+
+    <h3>Profile</h3>
+    <p>{{ resume.summary }}</p>
+
+    <h3>Skills</h3>
+    <!-- <p class="entry-title">{{ resume.education_title }}</p> -->
+    <p>{{ resume.skills }}</p>
+
+    <h3>Experience</h3>
+    <!-- <p class="entry-title">{{ resume.experience_title_1 }}</p> -->
+    <p>{{ resume.experience }}</p>
+
+    <!-- <p class="entry-title">{{ resume.experience_title_2 }}</p>
+    <p>{{ resume.experience_desc_2 }}</p> -->
+
+    <h3>Education</h3>
+    <!-- <p class="entry-title">{{ resume.education_title }}</p> -->
+    <p>{{ resume.education }}</p>
+<!-- 
+    <h3>Languages</h3>
+    <p>English : Native</p>
+    <p>French : Advanced</p>
+    <p>Hindi : Fluent</p> -->
+
+    <h3>Certifications</h3>
+    <!-- <p class="entry-title">{{ resume.education_title }}</p> -->
+    <p>{{ resume.certifications }}</p>
+
+    <h3>Achievements</h3>
+    <!-- <p class="entry-title">{{ resume.education_title }}</p> -->
+    <p>{{ resume.achievements }}</p>
+
+    <div class="actions">
+      {% with resume.id as resume_id %}
+        <a href="{% url 'download_resume_pdf' resume.id %}">Download as PDF</a>
+        <a href="{% url 'match_resume_to_job' resume.id %}">Optimize with AI</a>
+      {% endwith %}
+    </div>
+  </div>
+
+</body>
+</html>

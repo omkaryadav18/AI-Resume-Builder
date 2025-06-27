@@ -1,0 +1,6 @@
+<h2>Generate Resume Based on Job Description</h2>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Generate Resume</button>
+</form>

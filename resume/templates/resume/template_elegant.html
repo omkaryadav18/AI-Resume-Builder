@@ -1,0 +1,220 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Georgia, serif; padding: 40px; background: #fdfaf6; color: #2e2e2e; }
+    h1 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+    h2 { margin-top: 30px; font-style: italic; color: #7a4e48; }
+    p { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>{{ resume.full_name }}</h1>
+  <p><strong>Email:</strong> {{ resume.email }}<br><strong>Phone:</strong> {{ resume.phone }}</p>
+
+  <h2>Personal Statement</h2>
+  <p>{{ resume.summary }}</p>
+
+  <h2>Technical & Soft Skills</h2>
+  <p>{{ resume.skills }}</p>
+
+  <h2>Academic Background</h2>
+  <p>{{ resume.education }}</p>
+
+  <h2>Career History</h2>
+  <p>{{ resume.experience }}</p>
+
+  <h2>Certifications Earned</h2>
+  <p>{{ resume.certifications }}</p>
+
+  <h2>Achievements and Fames</h2>
+  <p>{{ resume.achievements }}</p>
+
+</body>
+</html>
+
+{% with resume.id as resume_id %}
+<a href="{% url 'download_resume_pdf' resume.id %}" class="btn btn-primary">Download as PDF</a>
+<a href="{% url 'match_resume_to_job' resume.id %}">Optimize with AI</a>
+
+{% endwith %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-bg: #ffffff;
+      --accent: #2c2f54;
+      --highlight: #f4b400;
+      --text-dark: #222;
+      --text-light: #ffffff;
+      --border: #e0e0e0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-dark);
+    }
+
+    .resume {
+      display: flex;
+      max-width: 950px;
+      margin: 40px auto;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 32%;
+      background-color: var(--accent);
+      color: var(--text-light);
+      padding: 40px 30px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--highlight);
+      padding-bottom: 5px;
+    }
+
+    .sidebar p, .sidebar li {
+      font-size: 0.95rem;
+      margin: 8px 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    /* Main content */
+    .main {
+      width: 68%;
+      background-color: var(--main-bg);
+      padding: 40px 50px;
+    }
+
+    .header {
+      border-left: 6px solid var(--highlight);
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .header h2 {
+      margin: 5px 0 0;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .main h3 {
+      font-size: 1.2rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .main p {
+      font-size: 0.95rem;
+      margin: 5px 0 15px;
+    }
+
+    .actions {
+      margin-top: 2rem;
+    }
+
+    .actions a {
+      display: inline-block;
+      margin-right: 15px;
+      padding: 10px 18px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      background-color: var(--accent);
+      color: var(--text-light);
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .actions a:hover {
+      background-color: #1e2040;
+    }
+
+    @media print {
+      .actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resume">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Contact</h2>
+      <p>Email: {{ resume.email }}</p>
+      <p>Phone: {{ resume.phone }}</p>
+      <p>Location: {{ resume.address }}</p>
+
+      <h2>Technical Skills</h2>
+      <ul>
+        {% for skill in resume.skills.split(',') %}
+          <li>{{ skill.strip }}</li>
+        {% endfor %}
+      </ul>
+
+      <h2>Awards</h2>
+      <ul>
+        {% for award in resume.achievements.split('.') %}
+          <li>{{ award.strip }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="header">
+        <h1>{{ resume.full_name }}</h1>
+        <h2>Graphic Designer</h2>
+      </div>
+
+      <h3>Professional Profile</h3>
+      <p>{{ resume.summary }}</p>
+
+      <h3>Experience</h3>
+      <p>{{ resume.experience }}</p>
+
+      <h3>Education</h3>
+      <p>{{ resume.education }}</p>
+
+      <h3>Certifications</h3>
+      <p>{{ resume.certifications }}</p>
+
+      <div class="actions">
+        {% with resume.id as resume_id %}
+          <a href="{% url 'download_resume_pdf' resume.id %}">Download as PDF</a>
+          <a href="{% url 'match_resume_to_job' resume.id %}">Optimize with AI</a>
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
