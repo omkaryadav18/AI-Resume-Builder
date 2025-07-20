@@ -8,4 +8,5 @@ To view and access the code and all the related files:
 
 There you can find all the related information of this project!
 
-New ideas and features are most welcomed...
+New ideas, suggestions, improvements and features are most welcomed...
+FEEL FREE TO FORK AND USE
